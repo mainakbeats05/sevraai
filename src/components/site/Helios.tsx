@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { MonitorSmartphone, Activity, Bell, Heart } from "lucide-react";
+import { MonitorSmartphone, Activity, Bell, Heart, Cpu } from "lucide-react";
 import { useEffect, useState } from "react";
+import heliosUnit from "@/assets/helios-unit.png";
 
 const useEcg = (length = 80) => {
   const [data, setData] = useState<number[]>(() => Array(length).fill(50));
@@ -148,6 +149,63 @@ export const Helios = () => {
                   <div className="h-full w-3/4 bg-gradient-primary" />
                 </div>
               </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* HELIOS hardware unit */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-24 grid lg:grid-cols-5 gap-10 items-center"
+        >
+          <div className="lg:col-span-2 order-2 lg:order-1">
+            <div className="chip mb-5">
+              <Cpu className="h-3 w-3" />
+              <span>HELIOS Unit · Bedside Console</span>
+            </div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-balance">
+              The dashboard, <span className="text-gradient">made physical.</span>
+            </h3>
+            <p className="mt-5 text-muted-foreground text-pretty">
+              A medical-grade touchscreen console that brings HELIOS to the
+              point of care — purpose-built controls, instant access to vitals,
+              and a tactile interface clinicians can trust under pressure.
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              {[
+                { l: "Display", v: '15.6" · 1920×1080' },
+                { l: "Latency", v: "12ms touch-to-pixel" },
+                { l: "I/O", v: "Medical-grade ports" },
+                { l: "Build", v: "IP54 · 24/7 rated" },
+              ].map((s) => (
+                <div key={s.l} className="rounded-xl border border-primary/15 bg-background/40 p-3">
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{s.l}</div>
+                  <div className="font-display font-semibold text-sm mt-0.5">{s.v}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-3 order-1 lg:order-2 relative">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.35),transparent_60%)] blur-2xl" />
+            <div className="relative glass-panel-strong holo-border rounded-3xl p-4 md:p-6 overflow-hidden">
+              <div className="absolute top-3 left-3 chip z-10">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                Powered on
+              </div>
+              <div className="absolute top-3 right-3 font-mono text-[10px] text-muted-foreground tracking-widest uppercase z-10">
+                HELIOS · Rev 02
+              </div>
+              <img
+                src={heliosUnit}
+                alt="HELIOS Unit — bedside medical console powered by SEVRA AI"
+                className="w-full h-auto block rounded-2xl drop-shadow-[0_30px_60px_hsl(var(--primary)/0.25)] [mix-blend-mode:screen]"
+                loading="lazy"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/80 to-transparent" />
             </div>
           </div>
         </motion.div>
