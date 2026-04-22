@@ -1,8 +1,6 @@
-import { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import { Cpu, Shield, Zap, Server } from "lucide-react";
-
-const ImcsScene = lazy(() => import("@/components/three/ImcsScene"));
+import LazyScene from "@/components/three/LazyScene";
 
 const specs = [
   { icon: Cpu, label: "Compute", value: "192 TOPS · NPU + GPU" },
