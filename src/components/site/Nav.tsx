@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import partnerLogo from "@/assets/myare-sevra-logo.jpeg";
 
 const links = [
   { label: "AI", href: "#ai" },
@@ -37,20 +38,16 @@ export const Nav = () => {
             scrolled ? "glass-panel-strong" : "bg-transparent"
           }`}
         >
-          <a href="#top" className="flex items-center gap-3 group">
-            <div className="relative h-9 w-9">
-              <div className="absolute inset-0 rounded-lg bg-gradient-primary opacity-90 blur-[2px] group-hover:blur-md transition-all" />
-              <div className="absolute inset-0 rounded-lg bg-gradient-primary flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="h-5 w-5 text-primary-foreground" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 2L3 7l9 5 9-5-9-5z" />
-                  <path d="M3 12l9 5 9-5" opacity="0.7" />
-                  <path d="M3 17l9 5 9-5" opacity="0.4" />
-                </svg>
-              </div>
-            </div>
-            <div className="leading-none">
-              <div className="font-display font-bold text-lg tracking-tight">SEVRA</div>
-              <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground -mt-0.5">AI Infrastructure</div>
+          <a href="#top" className="group flex items-center" aria-label="myare × SEVRA AI">
+            <div className="relative overflow-hidden rounded-lg border border-primary/20 bg-background/40 backdrop-blur transition-all group-hover:border-primary/50 group-hover:shadow-[0_0_24px_hsl(var(--primary)/0.35)]">
+              <img
+                src={partnerLogo}
+                alt="myare × SEVRA AI"
+                className="h-10 md:h-11 w-auto block object-contain"
+                draggable={false}
+              />
+              {/* Soft glow sweep */}
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,transparent_30%,hsl(var(--primary)/0.18)_50%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           </a>
 

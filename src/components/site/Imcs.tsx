@@ -1,8 +1,6 @@
-import { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import { Cpu, Shield, Zap, Server } from "lucide-react";
-
-const ImcsScene = lazy(() => import("@/components/three/ImcsScene"));
+import LazyScene from "@/components/three/LazyScene";
 
 const specs = [
   { icon: Cpu, label: "Compute", value: "192 TOPS · NPU + GPU" },
@@ -27,9 +25,7 @@ export const Imcs = () => {
             className="relative aspect-square max-w-xl mx-auto w-full"
           >
             <div className="absolute inset-0 rounded-full bg-primary/15 blur-[120px]" />
-            <Suspense fallback={null}>
-              <ImcsScene />
-            </Suspense>
+            <LazyScene variant="imcs" fallbackLabel="Spinning IMCS rack" />
           </motion.div>
 
           {/* Copy */}

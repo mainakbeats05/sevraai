@@ -1,8 +1,6 @@
-import { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
-
-const HeroScene = lazy(() => import("@/components/three/HeroScene"));
+import LazyScene from "@/components/three/LazyScene";
 
 export const Hero = () => {
   return (
@@ -13,9 +11,7 @@ export const Hero = () => {
 
       {/* 3D scene */}
       <div className="absolute inset-0 z-0">
-        <Suspense fallback={null}>
-          <HeroScene />
-        </Suspense>
+        <LazyScene variant="hero" fallbackLabel="Booting SEVRA Core" />
       </div>
 
       {/* Vignette */}
