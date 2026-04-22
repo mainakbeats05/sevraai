@@ -1,16 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Nav } from "@/components/site/Nav";
+import { Hero } from "@/components/site/Hero";
+import { SevraAi } from "@/components/site/SevraAi";
+import { Ecosystem } from "@/components/site/Ecosystem";
+import { SevraOs } from "@/components/site/SevraOs";
+import { Helios } from "@/components/site/Helios";
+import { Imcs } from "@/components/site/Imcs";
+import { Showcase } from "@/components/site/Showcase";
+import { Security } from "@/components/site/Security";
+import { UseCases } from "@/components/site/UseCases";
+import { Vision } from "@/components/site/Vision";
+import { Cta } from "@/components/site/Cta";
+import { Footer } from "@/components/site/Footer";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <main className="relative bg-background text-foreground">
+      <Nav />
+      <h1 className="sr-only">SEVRA AI — Intelligent Healthcare Infrastructure</h1>
+      <Hero />
+      <SevraAi />
+      <Ecosystem />
+      <SevraOs />
+      <Helios />
+      <Imcs />
+      <Showcase />
+      <Security />
+      <UseCases />
+      <Vision />
+      <Cta />
+      <Footer />
+    </main>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
