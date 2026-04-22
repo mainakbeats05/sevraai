@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Cpu, Shield, Zap, Server } from "lucide-react";
+import { Cpu, Shield, Zap, Server, Layers } from "lucide-react";
 import imcsRack from "@/assets/imcs-rack.png";
+import heliosInternals from "@/assets/helios-internals.png";
 
 const specs = [
   { icon: Cpu, label: "Compute", value: "192 TOPS · NPU + GPU" },
@@ -100,6 +101,74 @@ export const Imcs = () => {
             </p>
           </motion.div>
         </div>
+
+        {/* Inside the infrastructure — internal hardware blueprint */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-28"
+        >
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+            <div className="max-w-2xl">
+              <div className="chip mb-5">
+                <Layers className="h-3 w-3" />
+                <span>Inside the Infrastructure</span>
+              </div>
+              <h3 className="font-display text-3xl md:text-5xl font-bold tracking-tight text-balance">
+                Every component, <span className="text-gradient">engineered in-house.</span>
+              </h3>
+              <p className="mt-4 text-muted-foreground">
+                From the embedded compute core to the cooling system — purpose-built for
+                continuous, mission-critical operation in clinical environments.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {["Compute", "Memory", "I/O", "Cooling", "Security"].map((t) => (
+                <span key={t} className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative">
+            {/* Ambient glow */}
+            <div className="absolute -inset-8 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.2),transparent_70%)] blur-3xl -z-10" />
+
+            <div className="relative glass-panel-strong holo-border rounded-3xl overflow-hidden shadow-elegant">
+              {/* Top blueprint chrome */}
+              <div className="flex items-center justify-between bg-background/60 backdrop-blur px-5 py-3 border-b border-primary/10">
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-primary">DOC · HW-BLP-002</span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hidden sm:inline">HELIOS UNIT · INTERNAL LAYOUT</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">Rev 02 · 2026</span>
+                </div>
+              </div>
+
+              <div className="relative bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.08),transparent_70%)]">
+                <img
+                  src={heliosInternals}
+                  alt="HELIOS Unit — internal hardware layout blueprint with compute core, memory, storage, connectivity, internal modules, cooling and power supply"
+                  className="block w-full h-auto"
+                  loading="lazy"
+                />
+                {/* Corner crosshairs */}
+                {[
+                  "top-3 left-3", "top-3 right-3", "bottom-3 left-3", "bottom-3 right-3",
+                ].map((pos) => (
+                  <div key={pos} className={`pointer-events-none absolute ${pos} h-4 w-4`}>
+                    <div className="absolute inset-0 border-l border-t border-primary/40" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
