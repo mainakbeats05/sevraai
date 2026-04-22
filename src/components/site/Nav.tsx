@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import partnerLogo from "@/assets/myare-sevra-logo.jpeg";
 
 const links = [
   { label: "AI", href: "#ai" },
