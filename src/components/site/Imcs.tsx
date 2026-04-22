@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Cpu, Shield, Zap, Server } from "lucide-react";
-import LazyScene from "@/components/three/LazyScene";
+import imcsRack from "@/assets/imcs-rack.png";
 
 const specs = [
   { icon: Cpu, label: "Compute", value: "192 TOPS · NPU + GPU" },
@@ -16,16 +16,43 @@ export const Imcs = () => {
 
       <div className="relative container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* 3D rack */}
+          {/* Rack hardware */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="relative aspect-square max-w-xl mx-auto w-full"
+            initial={{ opacity: 0, scale: 0.94, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative max-w-md mx-auto w-full"
           >
-            <div className="absolute inset-0 rounded-full bg-primary/15 blur-[120px]" />
-            <LazyScene variant="imcs" fallbackLabel="Spinning IMCS rack" />
+            {/* Ambient glow */}
+            <div className="absolute -inset-10 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.35),transparent_60%)] blur-3xl -z-10" />
+            <div className="absolute inset-0 rounded-[2rem] bg-primary/10 blur-2xl -z-10" />
+
+            {/* Floating rack */}
+            <div className="relative animate-float">
+              <img
+                src={imcsRack}
+                alt="IMCS — full 42U rack diagram with cooling, network switch, server machines, storage, UPS and PDUs"
+                className="relative w-full h-auto block drop-shadow-[0_30px_80px_hsl(var(--primary)/0.4)] [mix-blend-mode:screen]"
+                loading="lazy"
+              />
+              {/* Holo scanline */}
+              <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
+                <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-60 animate-[scan_5s_linear_infinite]" />
+              </div>
+            </div>
+
+            {/* Floor reflection */}
+            <div className="mx-auto mt-2 h-12 w-3/4 rounded-[50%] bg-primary/30 blur-2xl opacity-60" />
+
+            {/* Pulse status pill */}
+            <div className="absolute top-4 left-4 chip backdrop-blur-md">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+              42U · Online
+            </div>
+            <div className="absolute top-4 right-4 font-mono text-[10px] text-muted-foreground tracking-widest uppercase">
+              IMCS · Rack 01
+            </div>
           </motion.div>
 
           {/* Copy */}
