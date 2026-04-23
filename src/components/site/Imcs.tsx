@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Cpu, Shield, Zap, Server, Layers } from "lucide-react";
-import imcsRack from "@/assets/imcs-rack.png";
+import imcsRack from "@/assets/imcs-rack-new.png";
 import heliosInternals from "@/assets/helios-internals.png";
 
 const specs = [
