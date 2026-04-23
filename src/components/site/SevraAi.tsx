@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Brain, Activity, AlertTriangle, Stethoscope } from "lucide-react";
-import sevraBrain from "@/assets/sevra-ai-brain.png";
+import sevraBrain from "@/assets/sevra-ai-brain.jpeg";
 
 const features = [
   { icon: Activity, title: "Real-time Predictions", desc: "Forecasts patient deterioration up to 6 hours ahead with calibrated confidence." },
@@ -46,53 +46,19 @@ export const SevraAi = () => {
           >
             <NeuralSvg />
 
-            {/* Brain core — true 3D centerpiece */}
-            <div
-              className="absolute inset-0 flex items-center justify-center pointer-events-none"
-              style={{ perspective: 1200 }}
-            >
-              {/* Volumetric halos */}
-              <div className="absolute h-80 w-80 rounded-full bg-primary/40 blur-[100px] animate-pulse-glow" />
-              <div className="absolute h-64 w-64 rounded-full bg-secondary/30 blur-[70px]" />
-              <div className="absolute h-40 w-40 rounded-full bg-primary/50 blur-[40px] animate-pulse" />
-
-              {/* Orbital ring behind brain */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-                className="absolute h-[70%] w-[70%] rounded-full border border-primary/20"
-                style={{ transform: "rotateX(72deg)" }}
+            {/* Brain core — pulsing centerpiece */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              {/* Halo */}
+              <div className="absolute h-72 w-72 rounded-full bg-primary/30 blur-[80px] animate-pulse-glow" />
+              <div className="absolute h-56 w-56 rounded-full bg-secondary/20 blur-[60px]" />
+              <motion.img
+                src={sevraBrain}
+                alt="SEVRA AI — neural core"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="relative h-[78%] w-auto object-contain [mix-blend-mode:screen] drop-shadow-[0_0_40px_hsl(var(--primary)/0.6)]"
+                loading="lazy"
               />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
-                className="absolute h-[80%] w-[80%] rounded-full border border-secondary/15"
-                style={{ transform: "rotateX(72deg) rotateZ(30deg)" }}
-              />
-
-              {/* The 3D brain — transparent PNG with depth */}
-              <motion.div
-                animate={{
-                  y: [0, -14, 0],
-                  rotateY: [-6, 6, -6],
-                  rotateX: [2, -2, 2],
-                }}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                style={{ transformStyle: "preserve-3d" }}
-                className="relative h-[82%] w-auto"
-              >
-                <img
-                  src={sevraBrain}
-                  alt="SEVRA AI — neural core"
-                  className="relative h-full w-auto object-contain drop-shadow-[0_30px_60px_hsl(var(--primary)/0.55)] [filter:drop-shadow(0_0_30px_hsl(var(--primary)/0.7))_drop-shadow(0_0_60px_hsl(188_100%_55%/0.4))]"
-                  loading="lazy"
-                />
-                {/* Floor reflection */}
-                <div
-                  aria-hidden
-                  className="absolute left-1/2 -bottom-6 h-10 w-[70%] -translate-x-1/2 rounded-[50%] bg-primary/40 blur-2xl opacity-60"
-                />
-              </motion.div>
             </div>
 
             <div className="absolute top-4 left-4 chip">
