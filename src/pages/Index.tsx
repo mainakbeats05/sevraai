@@ -10,6 +10,7 @@ import { Security } from "@/components/site/Security";
 import { UseCases } from "@/components/site/UseCases";
 import { Vision } from "@/components/site/Vision";
 import { Cta } from "@/components/site/Cta";
+import { MyCare } from "@/components/site/MyCare";
 import { Footer } from "@/components/site/Footer";
 
 const Index = () => {
@@ -28,6 +29,7 @@ const Index = () => {
       <UseCases />
       <Vision />
       <Cta />
+      <MyCare />
       <Footer />
     </main>
   );
