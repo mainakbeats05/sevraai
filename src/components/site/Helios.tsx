@@ -189,24 +189,48 @@ export const Helios = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-3 order-1 lg:order-2 relative">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.35),transparent_60%)] blur-2xl" />
-            <div className="relative glass-panel-strong holo-border rounded-3xl p-4 md:p-6 overflow-hidden">
-              <div className="absolute top-3 left-3 chip z-10">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-                Powered on
-              </div>
-              <div className="absolute top-3 right-3 font-mono text-[10px] text-muted-foreground tracking-widest uppercase z-10">
-                HELIOS · Rev 02
-              </div>
+          <div className="lg:col-span-3 order-1 lg:order-2 relative min-h-[420px] flex items-center justify-center" style={{ perspective: 2000 }}>
+            {/* Cinematic glow stack */}
+            <div className="pointer-events-none absolute inset-0 -z-10">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,hsl(var(--primary)/0.4),transparent_65%)] blur-3xl" />
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,hsl(var(--accent)/0.25),transparent_70%)] blur-2xl" />
+            </div>
+
+            {/* Light streak behind console */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[2px] w-[420px] bg-gradient-to-r from-transparent via-primary/60 to-transparent blur-sm -z-10" />
+
+            {/* Floating status chips */}
+            <div className="absolute top-2 left-2 chip z-20 backdrop-blur-md shadow-[0_10px_30px_hsl(var(--primary)/0.35)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+              Powered on
+            </div>
+            <div className="absolute top-3 right-2 font-mono text-[10px] text-muted-foreground tracking-widest uppercase z-20">
+              HELIOS · Rev 02
+            </div>
+
+            {/* Floating 3D console — pure cutout, no frame */}
+            <motion.div
+              animate={{ y: [0, -14, 0], rotateY: [-6, 6, -6], rotateX: [3, -2, 3] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative w-full"
+            >
               <img
                 src={heliosUnit}
                 alt="HELIOS Unit — bedside medical console powered by SEVRA AI"
-                className="w-full h-auto block rounded-2xl drop-shadow-[0_30px_60px_hsl(var(--primary)/0.25)] [mix-blend-mode:screen]"
+                className="relative z-10 w-full h-auto block select-none"
                 loading="lazy"
+                draggable={false}
+                style={{
+                  filter:
+                    "drop-shadow(0 30px 50px hsl(var(--primary) / 0.5)) drop-shadow(0 0 70px hsl(var(--primary) / 0.3)) drop-shadow(0 60px 80px rgba(0,0,0,0.55))",
+                }}
               />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/80 to-transparent" />
-            </div>
+            </motion.div>
+
+            {/* Floor reflection */}
+            <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 h-8 w-[55%] rounded-[50%] bg-black/60 blur-2xl" />
+            <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-6 w-[45%] rounded-[50%] bg-primary/40 blur-3xl" />
           </div>
         </motion.div>
       </div>

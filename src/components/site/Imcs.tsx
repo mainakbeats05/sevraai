@@ -23,35 +23,57 @@ export const Imcs = () => {
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative max-w-md mx-auto w-full"
+            className="relative max-w-md mx-auto w-full min-h-[560px] flex items-center justify-center"
+            style={{ perspective: 2200 }}
           >
-            {/* Ambient glow */}
-            <div className="absolute -inset-10 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.35),transparent_60%)] blur-3xl -z-10" />
-            <div className="absolute inset-0 rounded-[2rem] bg-primary/10 blur-2xl -z-10" />
+            {/* Cinematic glow stack */}
+            <div className="pointer-events-none absolute inset-0 -z-10">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,hsl(var(--primary)/0.4),transparent_65%)] blur-3xl" />
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,hsl(var(--accent)/0.22),transparent_70%)] blur-2xl" />
+            </div>
 
-            {/* Floating rack */}
-            <div className="relative animate-float">
+            {/* Subtle orbit ring */}
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center -z-10">
+              <div className="h-[520px] w-[520px] rounded-full border border-primary/10 animate-[spin_60s_linear_infinite]" />
+            </div>
+
+            {/* Light streak */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[2px] w-[380px] bg-gradient-to-r from-transparent via-primary/60 to-transparent blur-sm -z-10" />
+
+            {/* Floating 3D rack — pure cutout, no frame */}
+            <motion.div
+              animate={{ y: [0, -16, 0], rotateY: [-7, 7, -7], rotateX: [2, -2, 2] }}
+              transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative w-full"
+            >
               <img
                 src={imcsRack}
                 alt="IMCS — full 42U rack diagram with cooling, network switch, server machines, storage, UPS and PDUs"
-                className="relative w-full h-auto block drop-shadow-[0_30px_80px_hsl(var(--primary)/0.4)] [mix-blend-mode:screen]"
+                className="relative z-10 w-full h-auto block select-none"
                 loading="lazy"
+                draggable={false}
+                style={{
+                  filter:
+                    "drop-shadow(0 30px 60px hsl(var(--primary) / 0.55)) drop-shadow(0 0 80px hsl(var(--primary) / 0.35)) drop-shadow(0 60px 90px rgba(0,0,0,0.6))",
+                }}
               />
-              {/* Holo scanline */}
-              <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
+              {/* Holo scanline overlay */}
+              <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-60 animate-[scan_5s_linear_infinite]" />
               </div>
-            </div>
+            </motion.div>
 
             {/* Floor reflection */}
-            <div className="mx-auto mt-2 h-12 w-3/4 rounded-[50%] bg-primary/30 blur-2xl opacity-60" />
+            <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 h-8 w-[55%] rounded-[50%] bg-black/60 blur-2xl" />
+            <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-6 w-[45%] rounded-[50%] bg-primary/40 blur-3xl" />
 
-            {/* Pulse status pill */}
-            <div className="absolute top-4 left-4 chip backdrop-blur-md">
+            {/* Floating status chips */}
+            <div className="absolute top-2 left-2 chip backdrop-blur-md z-20 shadow-[0_10px_30px_hsl(var(--primary)/0.35)]">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
               42U · Online
             </div>
-            <div className="absolute top-4 right-4 font-mono text-[10px] text-muted-foreground tracking-widest uppercase">
+            <div className="absolute top-3 right-2 font-mono text-[10px] text-muted-foreground tracking-widest uppercase z-20">
               IMCS · Rack 01
             </div>
           </motion.div>
