@@ -19,34 +19,41 @@ export const SevraMobile = () => {
 
       <div className="relative container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* 3D Floating Phone — LEFT */}
+          {/* 3D Floating Phone — LEFT (cinematic, no frame) */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex justify-center order-2 lg:order-1"
-            style={{ perspective: 2000 }}
+            className="relative flex justify-center items-center order-2 lg:order-1 min-h-[680px]"
+            style={{ perspective: 2400 }}
           >
-            {/* Glow halo */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.35),transparent_60%)] blur-3xl -z-10" />
-
-            {/* Orbit rings */}
-            <div className="absolute inset-0 flex items-center justify-center -z-10">
-              <div className="h-[520px] w-[520px] rounded-full border border-primary/15 animate-[spin_40s_linear_infinite]" />
-              <div className="absolute h-[420px] w-[420px] rounded-full border border-primary/10 animate-[spin_60s_linear_infinite_reverse]" />
-              <div className="absolute h-[320px] w-[320px] rounded-full border border-accent/10 animate-[spin_30s_linear_infinite]" />
+            {/* Cinematic ambient glow stack */}
+            <div className="pointer-events-none absolute inset-0 -z-10">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,hsl(var(--primary)/0.4),transparent_65%)] blur-3xl" />
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,hsl(var(--accent)/0.25),transparent_70%)] blur-2xl" />
+              <div className="absolute left-1/2 top-[30%] -translate-x-1/2 h-[300px] w-[300px] rounded-full bg-primary/30 blur-[120px]" />
             </div>
 
-            {/* The 3D phone */}
+            {/* Subtle orbit rings — softer, further back */}
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center -z-10">
+              <div className="h-[560px] w-[560px] rounded-full border border-primary/10 animate-[spin_50s_linear_infinite]" />
+              <div className="absolute h-[440px] w-[440px] rounded-full border border-primary/5 animate-[spin_70s_linear_infinite_reverse]" />
+            </div>
+
+            {/* Light streak behind phone */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[2px] w-[420px] bg-gradient-to-r from-transparent via-primary/60 to-transparent blur-sm -z-10" />
+
+            {/* The 3D phone — pure cutout, no frame */}
             <motion.div
               animate={{
-                y: [0, -18, 0],
-                rotateY: [-8, 8, -8],
-                rotateX: [4, -2, 4],
+                y: [0, -22, 0],
+                rotateY: [-10, 6, -10],
+                rotateX: [3, -3, 3],
+                rotateZ: [-2, 1, -2],
               }}
               transition={{
-                duration: 9,
+                duration: 11,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -56,10 +63,12 @@ export const SevraMobile = () => {
               <img
                 src={mobileApp}
                 alt="SEVRA Mobile App — real-time ICU monitoring on smartphone"
-                className="relative z-10 max-h-[640px] w-auto drop-shadow-[0_40px_60px_hsl(var(--primary)/0.45)]"
+                className="relative z-10 max-h-[660px] w-auto select-none"
                 loading="lazy"
+                draggable={false}
                 style={{
-                  filter: "drop-shadow(0 0 30px hsl(var(--primary) / 0.5))",
+                  filter:
+                    "drop-shadow(0 30px 50px hsl(var(--primary) / 0.55)) drop-shadow(0 0 80px hsl(var(--primary) / 0.35)) drop-shadow(0 60px 80px rgba(0,0,0,0.6))",
                 }}
               />
 
@@ -67,8 +76,8 @@ export const SevraMobile = () => {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -left-6 top-[18%] glass-panel-strong holo-border rounded-xl px-3 py-2 z-20"
-                style={{ transform: "translateZ(60px)" }}
+                className="absolute -left-8 top-[18%] glass-panel-strong holo-border rounded-xl px-3 py-2 z-20 shadow-[0_10px_40px_hsl(var(--primary)/0.4)]"
+                style={{ transform: "translateZ(80px)" }}
               >
                 <div className="flex items-center gap-2 text-xs">
                   <Activity className="h-3.5 w-3.5 text-primary" />
@@ -79,8 +88,8 @@ export const SevraMobile = () => {
               <motion.div
                 animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -right-6 top-[42%] glass-panel-strong holo-border rounded-xl px-3 py-2 z-20"
-                style={{ transform: "translateZ(80px)" }}
+                className="absolute -right-8 top-[42%] glass-panel-strong holo-border rounded-xl px-3 py-2 z-20 shadow-[0_10px_40px_hsl(var(--destructive)/0.35)]"
+                style={{ transform: "translateZ(100px)" }}
               >
                 <div className="flex items-center gap-2 text-xs">
                   <span className="h-1.5 w-1.5 rounded-full bg-destructive animate-pulse" />
@@ -91,8 +100,8 @@ export const SevraMobile = () => {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -left-4 bottom-[20%] glass-panel-strong holo-border rounded-xl px-3 py-2 z-20"
-                style={{ transform: "translateZ(70px)" }}
+                className="absolute -left-6 bottom-[22%] glass-panel-strong holo-border rounded-xl px-3 py-2 z-20 shadow-[0_10px_40px_hsl(var(--primary)/0.35)]"
+                style={{ transform: "translateZ(90px)" }}
               >
                 <div className="flex items-center gap-2 text-xs">
                   <ShieldCheck className="h-3.5 w-3.5 text-primary" />
@@ -101,8 +110,9 @@ export const SevraMobile = () => {
               </motion.div>
             </motion.div>
 
-            {/* Floor reflection */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-12 w-[60%] rounded-[50%] bg-primary/30 blur-2xl" />
+            {/* Soft floor shadow + reflection glow */}
+            <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 h-8 w-[55%] rounded-[50%] bg-black/60 blur-2xl" />
+            <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 h-6 w-[45%] rounded-[50%] bg-primary/40 blur-3xl" />
           </motion.div>
 
           {/* Content — RIGHT */}
