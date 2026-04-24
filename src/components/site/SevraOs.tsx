@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { Layers3, GitBranch, Workflow, Database } from "lucide-react";
+import { Layers3, GitBranch, Workflow, Database, ExternalLink, PlayCircle } from "lucide-react";
 import osDashboard from "@/assets/sevra-os-dashboard.png";
+
+const SEVRA_OS_DEMO_URL = "https://id-preview--391dd5e6-1f0b-4217-b2c9-56e35e831c46.lovable.app";
 
 const items = [
   { icon: GitBranch, title: "Data Orchestration", desc: "Streams, batch and event pipelines unified under one schema." },
@@ -53,6 +55,31 @@ export const SevraOs = () => {
                 </motion.div>
               ))}
             </div>
+
+            {/* Live Demo CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-10 flex flex-wrap items-center gap-4"
+            >
+              <a
+                href={SEVRA_OS_DEMO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-primary to-primary/80 px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-elegant transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_20px_50px_-12px_hsl(var(--primary)/0.6)]"
+              >
+                <PlayCircle className="h-4 w-4" />
+                <span>Launch Live Demo</span>
+                <ExternalLink className="h-3.5 w-3.5 opacity-70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <span className="absolute inset-0 -z-10 rounded-xl bg-primary/40 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                Interactive sandbox · no signup
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* OS Command Center — live screenshot */}

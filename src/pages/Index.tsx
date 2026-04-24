@@ -3,6 +3,7 @@ import { Hero } from "@/components/site/Hero";
 import { SevraAi } from "@/components/site/SevraAi";
 import { Ecosystem } from "@/components/site/Ecosystem";
 import { SevraOs } from "@/components/site/SevraOs";
+import { SevraMobile } from "@/components/site/SevraMobile";
 import { Helios } from "@/components/site/Helios";
 import { Imcs } from "@/components/site/Imcs";
 import { Showcase } from "@/components/site/Showcase";
@@ -22,6 +23,7 @@ const Index = () => {
       <SevraAi />
       <Ecosystem />
       <SevraOs />
+      <SevraMobile />
       <Helios />
       <Imcs />
       <Showcase />
