@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Brain, Activity, AlertTriangle, Stethoscope } from "lucide-react";
-import sevraBrain from "@/assets/sevra-ai-brain.jpeg";
+import sevraBrain from "@/assets/sevra-ai-brain.png";
 
 const features = [
   { icon: Activity, title: "Real-time Predictions", desc: "Forecasts patient deterioration up to 6 hours ahead with calibrated confidence." },
@@ -36,36 +36,51 @@ export const SevraAi = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-8 items-center">
-          {/* Neural visualization with SEVRA AI brain core */}
+          {/* SEVRA AI brain — isolated floating 3D centerpiece */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-            className="lg:col-span-3 relative aspect-[4/3] glass-panel-strong rounded-3xl overflow-hidden scan-line"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-3 relative aspect-[4/3] flex items-center justify-center"
+            style={{ perspective: "1400px" }}
           >
-            <NeuralSvg />
-
-            {/* Brain core — pulsing centerpiece */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              {/* Halo */}
-              <div className="absolute h-72 w-72 rounded-full bg-primary/30 blur-[80px] animate-pulse-glow" />
-              <div className="absolute h-56 w-56 rounded-full bg-secondary/20 blur-[60px]" />
-              <motion.img
-                src={sevraBrain}
-                alt="SEVRA AI — neural core"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="relative h-[78%] w-auto object-contain [mix-blend-mode:screen] drop-shadow-[0_0_40px_hsl(var(--primary)/0.6)]"
-                loading="lazy"
-              />
+            {/* Ambient neural network — background atmosphere only */}
+            <div className="absolute inset-0 opacity-40 pointer-events-none">
+              <NeuralSvg />
             </div>
 
-            <div className="absolute top-4 left-4 chip">
+            {/* Layered cinematic glow stack */}
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <div className="absolute h-[420px] w-[420px] rounded-full bg-primary/25 blur-[120px] animate-pulse-glow" />
+              <div className="absolute h-[300px] w-[300px] rounded-full bg-secondary/20 blur-[90px]" />
+              <div className="absolute h-[180px] w-[180px] rounded-full bg-primary/40 blur-[60px]" />
+            </div>
+
+            {/* Floating brain — transparent product render */}
+            <motion.img
+              src={sevraBrain}
+              alt="SEVRA AI — neural core"
+              animate={{
+                y: [0, -14, 0],
+                rotateY: [-4, 4, -4],
+                rotateX: [2, -2, 2],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative z-10 h-[88%] w-auto object-contain drop-shadow-[0_0_30px_hsl(var(--primary)/0.55)] [filter:drop-shadow(0_25px_40px_hsl(220_60%_5%/0.7))_drop-shadow(0_0_60px_hsl(var(--primary)/0.45))_drop-shadow(0_0_120px_hsl(270_90%_65%/0.25))]"
+              loading="lazy"
+            />
+
+            {/* Floor reflection */}
+            <div className="pointer-events-none absolute bottom-[8%] left-1/2 -translate-x-1/2 h-6 w-[55%] rounded-[50%] bg-primary/30 blur-2xl" />
+
+            {/* Floating chips — anchored to canvas, not a frame */}
+            <div className="absolute top-2 left-2 chip z-20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
               Inference live
             </div>
-            <div className="absolute bottom-4 right-4 font-mono text-[10px] text-muted-foreground tracking-widest uppercase">
+            <div className="absolute bottom-2 right-2 font-mono text-[10px] text-muted-foreground tracking-widest uppercase z-20">
               Model · sevra-core v3.2
             </div>
           </motion.div>

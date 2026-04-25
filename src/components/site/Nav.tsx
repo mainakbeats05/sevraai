@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import partnerLogo from "@/assets/myare-sevra-logo.jpeg";
+import partnerLogo from "@/assets/mycare-sevra-logo.png";
 
 type NavLink = { label: string; href: string; type: "anchor" | "route" };
 
@@ -68,16 +68,13 @@ export const Nav = () => {
             scrolled ? "glass-panel-strong" : "bg-transparent"
           }`}
         >
-          <Link to="/" className="group flex items-center" aria-label="myare × SEVRA AI">
-            <div className="relative overflow-hidden rounded-lg border border-primary/20 bg-background/40 backdrop-blur transition-all group-hover:border-primary/50 group-hover:shadow-[0_0_24px_hsl(var(--primary)/0.35)]">
-              <img
-                src={partnerLogo}
-                alt="myare × SEVRA AI"
-                className="h-10 md:h-11 w-auto block object-contain"
-                draggable={false}
-              />
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,transparent_30%,hsl(var(--primary)/0.18)_50%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
+          <Link to="/" className="group flex items-center" aria-label="mycare × SEVRA AI">
+            <img
+              src={partnerLogo}
+              alt="mycare × SEVRA AI"
+              className="h-9 md:h-10 w-auto block object-contain transition-all duration-500 group-hover:drop-shadow-[0_0_18px_hsl(var(--primary)/0.55)] drop-shadow-[0_0_10px_hsl(var(--primary)/0.25)]"
+              draggable={false}
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
