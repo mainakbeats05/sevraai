@@ -1,20 +1,26 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import partnerLogo from "@/assets/myare-sevra-logo.jpeg";
 
-const links = [
-  { label: "AI", href: "#ai" },
-  { label: "OS", href: "#os" },
-  { label: "HELIOS", href: "#helios" },
-  { label: "IMCS", href: "#imcs" },
-  { label: "Showcase", href: "#showcase" },
-  { label: "Vision", href: "#vision" },
+type NavLink = { label: string; href: string; type: "anchor" | "route" };
+
+const links: NavLink[] = [
+  { label: "AI", href: "#ai", type: "anchor" },
+  { label: "OS", href: "#os", type: "anchor" },
+  { label: "HELIOS", href: "#helios", type: "anchor" },
+  { label: "IMCS", href: "#imcs", type: "anchor" },
+  { label: "Insights", href: "/insights", type: "route" },
+  { label: "FAQ", href: "#faq", type: "anchor" },
+  { label: "Policies", href: "/policies", type: "route" },
 ];
 
 export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -22,6 +28,30 @@ export const Nav = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Resolve anchor href: from sub-routes, anchors point at "/#id"
+  const resolveHref = (l: NavLink) =>
+    l.type === "anchor" && !isHome ? `/${l.href}` : l.href;
+
+  const renderLink = (l: NavLink, onClick?: () => void) => {
+    const href = resolveHref(l);
+    const className =
+      "relative px-4 py-2 text-sm font-medium text-foreground/75 hover:text-foreground transition-colors group";
+    if (l.type === "route") {
+      return (
+        <Link to={href} onClick={onClick} className={className}>
+          {l.label}
+          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-3/4 h-px bg-gradient-primary transition-all duration-300" />
+        </Link>
+      );
+    }
+    return (
+      <a href={href} onClick={onClick} className={className}>
+        {l.label}
+        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-3/4 h-px bg-gradient-primary transition-all duration-300" />
+      </a>
+    );
+  };
 
   return (
     <motion.header
@@ -38,7 +68,7 @@ export const Nav = () => {
             scrolled ? "glass-panel-strong" : "bg-transparent"
           }`}
         >
-          <a href="#top" className="group flex items-center" aria-label="myare × SEVRA AI">
+          <Link to="/" className="group flex items-center" aria-label="myare × SEVRA AI">
             <div className="relative overflow-hidden rounded-lg border border-primary/20 bg-background/40 backdrop-blur transition-all group-hover:border-primary/50 group-hover:shadow-[0_0_24px_hsl(var(--primary)/0.35)]">
               <img
                 src={partnerLogo}
@@ -46,27 +76,19 @@ export const Nav = () => {
                 className="h-10 md:h-11 w-auto block object-contain"
                 draggable={false}
               />
-              {/* Soft glow sweep */}
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,transparent_30%,hsl(var(--primary)/0.18)_50%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-          </a>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-1">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="relative px-4 py-2 text-sm font-medium text-foreground/75 hover:text-foreground transition-colors group"
-              >
-                {l.label}
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-3/4 h-px bg-gradient-primary transition-all duration-300" />
-              </a>
+              <span key={l.href + l.label}>{renderLink(l)}</span>
             ))}
           </nav>
 
           <div className="hidden md:flex items-center gap-2">
             <a
-              href="#cta"
+              href={isHome ? "#cta" : "/#cta"}
               className="relative inline-flex items-center gap-2 rounded-full bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-elegant hover:scale-[1.03] transition-transform"
             >
               Request Demo
@@ -92,17 +114,12 @@ export const Nav = () => {
             >
               <div className="flex flex-col gap-1">
                 {links.map((l) => (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="px-3 py-2 rounded-lg text-sm text-foreground/80 hover:bg-primary/10"
-                  >
-                    {l.label}
-                  </a>
+                  <span key={l.href + l.label}>
+                    {renderLink(l, () => setOpen(false))}
+                  </span>
                 ))}
                 <a
-                  href="#cta"
+                  href={isHome ? "#cta" : "/#cta"}
                   onClick={() => setOpen(false)}
                   className="mt-2 text-center rounded-full bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
                 >
