@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone, Linkedin, Twitter, Github } from "lucide-react";
+import { Link } from "react-router-dom";
 import sevraAiLogo from "@/assets/sevra-ai-logo.jpeg";
 
 export const Footer = () => {
@@ -100,11 +101,11 @@ export const Footer = () => {
               Company
             </div>
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <li><a href="#vision" className="hover:text-foreground transition-colors">Vision</a></li>
-              <li><a href="#use-cases" className="hover:text-foreground transition-colors">Use Cases</a></li>
-              <li><a href="#security" className="hover:text-foreground transition-colors">Security</a></li>
-              <li><a href="#cta" className="hover:text-foreground transition-colors">Partner</a></li>
-              <li><a href="#cta" className="hover:text-foreground transition-colors">Careers</a></li>
+              <li><a href="/#vision" className="hover:text-foreground transition-colors">Vision</a></li>
+              <li><Link to="/insights" className="hover:text-foreground transition-colors">Insights</Link></li>
+              <li><Link to="/faq" className="hover:text-foreground transition-colors">FAQ</Link></li>
+              <li><a href="/#use-cases" className="hover:text-foreground transition-colors">Use Cases</a></li>
+              <li><a href="/#cta" className="hover:text-foreground transition-colors">Partner</a></li>
             </ul>
           </div>
 
@@ -157,10 +158,10 @@ export const Footer = () => {
             © {year} SEVRA Technologies · All rights reserved
           </div>
           <div className="flex items-center gap-5 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-            <a href="#" className="hover:text-foreground transition-colors">Terms</a>
-            <a href="#" className="hover:text-foreground transition-colors">Security</a>
-            <a href="#" className="hover:text-foreground transition-colors">Status</a>
+            <Link to="/policies#privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link to="/policies#terms" className="hover:text-foreground transition-colors">Terms</Link>
+            <Link to="/policies#security" className="hover:text-foreground transition-colors">Security</Link>
+            <Link to="/policies#cookies" className="hover:text-foreground transition-colors">Cookies</Link>
           </div>
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary/70">
             v2.6.0 · Build 2026.04
