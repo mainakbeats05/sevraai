@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import mycareLogo from "@/assets/mycare-logo.jpeg";
 
-const MYCARE_URL =
-  href="https://mycare.sevraai.com"
+const MYCARE_URL = "https://mycare.sevraai.com";
+
 export const MyCare = () => {
   return (
     <section
