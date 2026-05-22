@@ -3,8 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import mycareLogo from "@/assets/mycare-logo.jpeg";
 
 const MYCARE_URL =
-  "https://id-preview--5a33dceb-6ea5-487f-9d50-3b484445abca.lovable.app/#roadmap";
-
+  href="https://mycare.sevraai.com"
 export const MyCare = () => {
   return (
     <section
