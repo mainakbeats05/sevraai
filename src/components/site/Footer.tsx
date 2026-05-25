@@ -123,7 +123,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-start gap-2.5">
                 <Phone className="mt-0.5 h-4 w-4 text-primary/70" />
-                <span>+91 9101613924 </span>
+                <span>+91 9101613924</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 text-primary/70" />
