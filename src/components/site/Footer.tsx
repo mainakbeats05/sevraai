@@ -127,13 +127,13 @@ export const Footer = () => {
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 text-primary/70" />
-                <span>HQ · San Francisco · Bengaluru</span>
+                <span>Millennium Tower, 6th floor, Maruti Chowk Baner Pune, 411069 </span>
               </li>
             </ul>
 
             <div className="mt-6 rounded-xl border border-border/60 bg-card/40 p-4 backdrop-blur">
               <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-primary/80">
-                Compliance
+                To be Compliance
               </div>
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {["HIPAA", "SOC 2", "ISO 27001", "GDPR"].map((c) => (
