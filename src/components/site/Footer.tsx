@@ -117,13 +117,13 @@ export const Footer = () => {
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2.5">
                 <Mail className="mt-0.5 h-4 w-4 text-primary/70" />
-                <a href="mailto:hello@sevra.ai" className="hover:text-foreground transition-colors">
-                  hello@sevra.ai
+                <a href="mailto:getmycare108@gmail.com" className="hover:text-foreground transition-colors">
+                  getmycare108@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
                 <Phone className="mt-0.5 h-4 w-4 text-primary/70" />
-                <span>+1 (415) 555-0142</span>
+                <span>+91 9101613924 </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 text-primary/70" />
