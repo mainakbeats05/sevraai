@@ -34,25 +34,31 @@ export const Nav = () => {
     l.type === "anchor" && !isHome ? `/${l.href}` : l.href;
 
   const renderLink = (l: NavLink, onClick?: () => void) => {
-    const href = resolveHref(l);
-    const className =
-      "relative px-4 py-2 text-sm font-medium text-foreground/75 hover:text-foreground transition-colors group";
-    if (l.type === "route") {
-      return (
-        <Link to={href} onClick={onClick} className={className}>
-          {l.label}
-          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-3/4 h-px bg-gradient-primary transition-all duration-300" />
-        </Link>
-      );
-    }
+  const href = resolveHref(l);
+  const className =
+    "relative px-4 py-2 text-sm font-medium text-foreground/75 hover:text-foreground transition-colors group";
+  if (l.type === "route") {
     return (
-      <a href={href} onClick={onClick} className={className}>
+      <Link
+        to={href}
+        onClick={() => {
+          window.scrollTo(0, 0);
+          onClick?.();
+        }}
+        className={className}
+      >
         {l.label}
         <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-3/4 h-px bg-gradient-primary transition-all duration-300" />
-      </a>
+      </Link>
     );
-  };
-
+  }
+  return (
+    <a href={href} onClick={onClick} className={className}>
+      {l.label}
+      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-3/4 h-px bg-gradient-primary transition-all duration-300" />
+    </a>
+  );
+};
   return (
     <motion.header
       initial={{ y: -40, opacity: 0 }}
