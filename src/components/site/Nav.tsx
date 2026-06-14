@@ -89,12 +89,12 @@ export const Nav = () => {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-2">
-            <a
-              href={isHome ? "#cta" : "/#cta"}
-              className="relative inline-flex items-center gap-2 rounded-full bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-elegant hover:scale-[1.03] transition-transform"
-            >
-              Request Demo
+         <div className="hidden md:flex items-center gap-2">
+  
+    href="/live-demo"
+    className="relative inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-semibold text-foreground hover:bg-primary/10 transition-colors"
+  >
+    Launch Live Demo
             </a>
           </div>
 
@@ -123,10 +123,9 @@ export const Nav = () => {
                 ))}
                 <a
                   href={isHome ? "#cta" : "/#cta"}
-                  onClick={() => setOpen(false)}
-                  className="mt-2 text-center rounded-full bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
-                >
-                  Request Demo
+    className="relative inline-flex items-center gap-2 rounded-full bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-elegant hover:scale-[1.03] transition-transform"
+  >
+    Request Demo
                 </a>
               </div>
             </motion.div>
