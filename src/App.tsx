@@ -9,9 +9,9 @@ import Policies from "./pages/Policies.tsx";
 import Insights from "./pages/Insights.tsx";
 import InsightArticle from "./pages/InsightArticle.tsx";
 import FaqPage from "./pages/FaqPage.tsx";
+import LiveDemo from "./pages/LiveDemo.tsx";
 
 const queryClient = new QueryClient();
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -24,12 +24,11 @@ const App = () => (
           <Route path="/insights" element={<Insights />} />
           <Route path="/insights/:slug" element={<InsightArticle />} />
           <Route path="/faq" element={<FaqPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/live-demo" element={<LiveDemo />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
-
 export default App;
